@@ -40,3 +40,13 @@ button{
     width: 80px;
     background-color: yellowgreen;
 }
+.hidden {
+    display: none;
+}
+.error-message {
+    font-weight: bold;
+    color: yellow;
+}
+#error-log-container li {
+    list-style-type: none;
+}
