@@ -1,0 +1,42 @@
+form{
+    text-align: center;
+    width: 800px;
+    padding: 15px 0px 70px 0px;
+}
+h1{
+    text-align: center;
+    color: crimson;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 60px;
+}
+h3{
+    color: teal;
+    text-align: center;
+}
+p{
+    color: crimson;
+    text-align: center;
+    font-size: 15px;
+}
+body{
+    background-color: rgb(178, 207, 221);
+    float: right;
+    padding-right: 25%;
+}
+input{
+    width:100%;
+    text-align: center;
+}
+#login{
+    text-align: center;
+    background-color: rgb(185, 169, 207);
+}
+button{
+    background-color: rgb(229, 255, 0);
+    color: white;
+    width: 80px;
+}
+#reset{
+    width: 80px;
+    background-color: yellowgreen;
+}

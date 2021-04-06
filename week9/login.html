@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="CSS/style.css">
+<link rel="stylesheet" type="test/css" href="CSS/reset.css">
+</head>
+<body id="login">
+<h1>Log In</h1>
+<h3>Fill in this form to login</h3>
+<form action="contactform.php" method="post">
+<label for="email">Email Adress</label>
+    <input type="text" name="email" placeholder="Email">
+<label for="password">Password</label>
+    <input type="password" name="password" placeholder="Password">
+<button type="submit" name="submit">Login</button>
+<button type="reset" name="reset" id="reset">Reset</button>
+<p>Create an acount!<a href="file:///C:/Users/netbook/Desktop/Week-09/week9/register.html">Register Now!</a></p>
+</form>
+<div id="error-log-container" class="hidden">
+    <h2>Validation report: </h2>
+    <ul id="list-of-errors">
+    </ul>
+</div>
+</body>
+<script src="js/login.js" defer="defer"></script>
+</html>
