@@ -27,7 +27,7 @@ function submitRegisterForm(e) {
     /*validation for elements*/
     if ( 
         formCounter && labelsCounter.length === 4 && inputsCounter.length === 4 
-        && buttonsCounter.length === 3 && formRegisterName.value.length !==0 
+        && buttonsCounter.length === 2 && formRegisterName.value.length !==0 
         && formRegisterEmail.value.length !==0
         && formRegisterEmail.value.includes('@') && formRegisterEmail.value.includes('.com') 
         && formRegisterFirstPassword.value.length !==0 
@@ -63,10 +63,10 @@ function submitRegisterForm(e) {
             if (buttonsCounter.length === 0) {
                 listOfErrors.appendChild(createMenuItem('There are no buttons in the form')).
                 classList.toggle('error-message'); 
-            } else if (buttonsCounter.length < 3) {
+            } else if (buttonsCounter.length < 2) {
                 listOfErrors.appendChild(createMenuItem('There are missing buttons in the form')).
                 classList.toggle('error-message'); 
-            }  else if (buttonsCounter.length >= 3) {
+            }  else if (buttonsCounter.length >= 2) {
                 listOfErrors.appendChild(createMenuItem('There are ' 
                 + buttonsCounter.length + ' buttons in the form'));
             }
