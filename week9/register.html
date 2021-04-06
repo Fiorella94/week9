@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-<title>Register</title>
-<link rel="stylesheet" type="text/css" href="CSS/style.css">
-<link rel="stylesheet" type="test/css" href="CSS/reset.css">
-</head>
-<body>
-<h1>Register</h1>
-<h3>Fill in this form to register.</h3>
-<form action="contactform.php" method="post">
-<label for="full-name">Full Name</label>
-    <input type="text" name="full-name" placeholder="Full Name">
-<label for="email">Email Adress</label>
-    <input type="text" name="email" placeholder="Email">
-<label for="password">Password</label>
-    <input type="password" name="password" placeholder="Password">
-<label for="confirm-password">Confirm Password</label>
-    <input type="password" name="confirm-password" placeholder="Confirm Password">
-<button type="submit" name="submit">Submit</button>
-<button type="reset" name="reset" id="reset">Reset</button>
-<p>Already have an acount?<a href="file:///C:/Users/netbook/Desktop/Week-09/week9/login.html">Login!</a></p>
-</form>
-<div id="error-log-container" class="hidden">
-    <h2>Validation report: </h2>
-    <ul id="list-of-errors">
-    </ul>
-</div>
-</body>
-<script src="js/register.js" defer="defer"></script>
+    <head>
+        <meta charset="utf-8">
+    <title>Register</title>
+    <script src="js/register.js" defer="defer"></script>
+    <link rel="stylesheet" type="test/css" href="CSS/reset.css">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    </head>
+    <body>
+        <h1>Register</h1>
+        <h3>Fill in this form to register.</h3>
+        <form>
+            <label for="full-name">Full Name</label>
+            <input type="text" name="full-name" placeholder="Full Name" id="form-register-name">
+            <label for="email">Email Adress</label>
+            <input type="text" name="email" placeholder="Email" id="form-register-email">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Password" id="form-register-first-password">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" name="confirm-password" placeholder="Confirm Password">
+            <button type="submit" name="submit">Submit</button>
+            <button type="reset" name="reset" id="reset">Reset</button>
+            <p>Already have an acount?<a href="login.html">Login!</a></p>
+        </form>
+        <div id="error-log-container" class="hidden">
+            <h2>Validation report: </h2>
+            <ul id="list-of-errors">
+            </ul>
+        </div>
+    </body>
 </html>

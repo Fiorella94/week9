@@ -20,14 +20,6 @@ function createMenuItem(error){
 function submitLoginForm(e) {
     e.preventDefault();
     errorLoginContainer.classList.toggle('hidden');
-    
-    // console.log('labels'+labelsCounter.length);
-    // console.log('inputs'+inputsCounter.length);
-    // console.log('buttons'+buttonsCounter.length);
-    
-
-
-
     /*Validation*/
     if( 
         formCounter && labelsCounter.length === 2 && inputsCounter.length === 2 
@@ -35,8 +27,7 @@ function submitLoginForm(e) {
         && formLoginEmail.value.includes('@') && formLoginEmail.value.includes('.com')  
         && formLoginPassword.value.length !== 0
     ) {
-        listOfErrors.appendChild(createMenuItem('All is correct'));
-        
+        listOfErrors.appendChild(createMenuItem('All is correct'));        
     } else {
         if (!formCounter) {
             listOfErrors.appendChild(createMenuItem('There is no form in the DOM'));
@@ -71,6 +62,5 @@ function submitLoginForm(e) {
         } else {
             listOfErrors.appendChild(createMenuItem('Password is not empty'));
         }
-
     }
 }

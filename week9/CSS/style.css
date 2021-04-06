@@ -1,52 +1,56 @@
-form{
-    text-align: center;
-    width: 800px;
-    padding: 15px 0px 70px 0px;
+/*MAIN*/
+body {    
+    float: right;
+    padding-right: 25%;
+    background-color: rgb(178, 207, 221);
 }
-h1{
+h1 {
     text-align: center;
     color: crimson;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 60px;
 }
-h3{
-    color: teal;
+h3 {
     text-align: center;
+    color: teal;    
 }
-p{
-    color: crimson;
+p {
     text-align: center;
+    color: crimson;    
     font-size: 15px;
 }
-body{
-    background-color: rgb(178, 207, 221);
-    float: right;
-    padding-right: 25%;
-}
-input{
-    width:100%;
+input {
     text-align: center;
+    width:100%;    
 }
-#login{
+form {
+    text-align: center;
+    width: 800px;
+    padding: 15px 0px 70px 0px;
+}
+button {
+    width: 80px;
+    background-color: rgb(229, 255, 0);
+    color: white;
+    
+}
+/*IDs*/
+#login {
     text-align: center;
     background-color: rgb(185, 169, 207);
 }
-button{
-    background-color: rgb(229, 255, 0);
-    color: white;
-    width: 80px;
-}
-#reset{
+#reset {
     width: 80px;
     background-color: yellowgreen;
 }
+#error-log-container li {
+    list-style-type: none;
+}
+/*CLASSES*/
 .hidden {
     display: none;
 }
 .error-message {
     font-weight: bold;
     color: yellow;
-}
-#error-log-container li {
-    list-style-type: none;
 }
