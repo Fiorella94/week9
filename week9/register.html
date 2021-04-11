@@ -15,10 +15,20 @@
             <input type="text" name="full-name" placeholder="Full Name" id="form-register-name">
             <label for="email">Email Adress</label>
             <input type="text" name="email" placeholder="Email" id="form-register-email">
+            <div id="register-error-email" class="hidden">
+                <p>E-mail must have a valid format</p>
+            </div>
             <label for="password">Password</label>
             <input type="password" name="password" placeholder="Password" id="form-register-first-password">
+            <div id="register-error-first-password" class="hidden">
+                <p>Password must have the correct format</p>
+            </div>
             <label for="confirm-password">Confirm Password</label>
             <input type="password" name="confirm-password" placeholder="Confirm Password" id="form-register-second-password">
+            <input type="password" name="confirm-password" placeholder="Confirm Password" id="form-register-second-password">
+            <div id="register-error-second-password" class="hidden">
+                <p>Must match first password</p>
+            </div>
             <button type="submit" name="submit" id="submit-button">Submit</button>
             <button type="reset" name="reset" id="reset-fields-button">Reset</button>
             <p>Already have an acount?<a href="login.html">Login!</a></p>
@@ -28,7 +38,7 @@
             <ul id="list-of-errors">
             </ul>
         </div>
-        <div id="message">
+        <div id="register-error-first-password" class="hidden">
             <h3>Password must contain the following:</h3>
             <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
             <p id="number" class="invalid">A <b>number</b></p>
