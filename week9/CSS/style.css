@@ -54,3 +54,33 @@ button {
     font-weight: bold;
     color: yellow;
 }
+/*message*/
+#message {
+    display: none;
+    background: #f1eeee;
+    color: rgb(209, 93, 15);
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+  }
+  #message p {
+    padding: 10px 35px;
+    font-size: 18px;
+  }
+  .valid {
+    color: green;
+  }
+  .valid:before {
+    position: relative;
+    left: -35px;
+    content: "&#10004;";
+  }
+  .invalid {
+    color: red;
+  }
+  
+  .invalid:before {
+    position: relative;
+    left: -35px;
+    content: "&#10006;";
+  }
