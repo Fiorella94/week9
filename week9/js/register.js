@@ -15,6 +15,7 @@ var errorLoginContainer = document.getElementById('error-log-container');
 var formRegisterSubmitButton = document.getElementById('submit-button');
 var formRegisterResetButton = document.getElementById('reset-fields-button');
 var listOfErrors = document.getElementById('list-of-errors');
+var listOfResults = document.getElementById('list-of-results');
 
 /*convert some collections to arrays */
 var formCounter = Array.from(document.getElementsByTagName('form'));
@@ -116,7 +117,7 @@ function submitRegisterForm(e) {
         /*validation for elements*/
     if ( 
         formCounter.length === 1 && labelsCounter.length === 4 && inputsCounter.length === 4 
-        && buttonsCounter.length === 3 
+        && buttonsCounter.length === 2 
         && formRegisterName.value.length >= 6 && formRegisterName.value.includes(' ') 
         && formRegisterEmail.value.length !==0
         && formRegisterEmail.value.includes('@') && formRegisterEmail.value.includes('.com') 
@@ -127,6 +128,10 @@ function submitRegisterForm(e) {
         && formRegisterFirstPassword.value === formRegisterSecondPassword.value
         ) {
             listOfErrors.appendChild(createMenuItem('Every validation has passed'));
+            listOfResults.appendChild(createMenuItem('The Name is: '+formRegisterName.value));
+            listOfResults.appendChild(createMenuItem('The e-mail is: '+formRegisterEmail.value));
+            listOfResults.appendChild(createMenuItem('The first is: '+formRegisterFirstPassword.value));
+            listOfResults.appendChild(createMenuItem('The second password is: '+formRegisterSecondPassword.value));
             /*if all the validations pass, the function performs the request*/
             fetch(
                 `https://jsonplaceholder.typicode.com/users?email=${formRegisterEmail.value}`, 
@@ -164,24 +169,30 @@ function submitRegisterForm(e) {
             if (buttonsCounter.length === 0) {
                 listOfErrors.appendChild(createMenuItem('There are no buttons in the form')).
                 classList.toggle('error-message'); 
-            } else if (buttonsCounter.length < 3) {
+            } else if (buttonsCounter.length < 2) {
                 listOfErrors.appendChild(createMenuItem('There are missing buttons in the form')).
                 classList.toggle('error-message'); 
-            }  else if (buttonsCounter.length >= 3) {
+            }  else if (buttonsCounter.length >= 2) {
                 listOfErrors.appendChild(createMenuItem('There are ' 
                 + buttonsCounter.length + ' buttons in the form'));
             }
             if (formRegisterName.value.length < 6 || !formRegisterName.value.includes(' ')) {
                 listOfErrors.appendChild(createMenuItem('The Name input does not have the correct format')).
                 classList.toggle('error-message');
+                listOfResults.appendChild(createMenuItem('The Name is: '+formRegisterName.value)).
+                classList.toggle('error-message');
             } else {
-                listOfErrors.appendChild(createMenuItem('The Name input has the correct format')); 
+                listOfErrors.appendChild(createMenuItem('The Name input has the correct format'));
+                listOfResults.appendChild(createMenuItem('The Name is: '+formRegisterName.value)); 
             }            
             if (!formRegisterEmail.value.includes('@') || !formRegisterEmail.value.includes('.com')) {
                 listOfErrors.appendChild(createMenuItem('The e-mail format is incorrect')).
                 classList.toggle('error-message');
+                listOfResults.appendChild(createMenuItem('The e-mail is: '+formRegisterEmail.value)).
+                classList.toggle('error-message');
             } else {
                 listOfErrors.appendChild(createMenuItem('The e-mail format is correct'))
+                listOfResults.appendChild(createMenuItem('The e-mail is: '+formRegisterEmail.value));
             }
             if (
                 formRegisterFirstPassword.value.match(/^[0-9]+$/) 
@@ -190,8 +201,11 @@ function submitRegisterForm(e) {
                 ) {
                 listOfErrors.appendChild(createMenuItem('The first password format is incorrect')).
                 classList.toggle('error-message');
+                listOfResults.appendChild(createMenuItem('The first is: '+formRegisterFirstPassword.value)).
+                classList.toggle('error-message');
             } else {
-                listOfErrors.appendChild(createMenuItem('The first password format is correct')); 
+                listOfErrors.appendChild(createMenuItem('The first password format is correct'));
+                listOfResults.appendChild(createMenuItem('The first is: '+formRegisterFirstPassword.value));  
             }
             if ( formRegisterSecondPassword.value.match(/^[0-9]+$/) 
                 || formRegisterSecondPassword.value.match(/^[a-zA-Z]+$/)
@@ -200,10 +214,13 @@ function submitRegisterForm(e) {
             ) {
                 listOfErrors.appendChild(createMenuItem('The second password format is invalid')).
                 classList.toggle('error-message');
+                listOfResults.appendChild(createMenuItem('The second password is: '+formRegisterSecondPassword.value)).
+                classList.toggle('error-message');
             } else {
                 listOfErrors.appendChild(
                     createMenuItem('The second password format is correct and passwords match')
-                ); 
+                );
+                listOfResults.appendChild(createMenuItem('The second password is: '+formRegisterSecondPassword.value));  
             }
             if (formRegisterFirstPassword.value === formRegisterSecondPassword.value) {
                 listOfErrors.appendChild(createMenuItem('Passwords match'));                 
@@ -225,6 +242,7 @@ function resetRegisterForm(e) {
 /*CLEAN FORM*/
 function cleanFormFunction(e) {    
     listOfErrors.innerHTML = '';
+    listOfResults.innerHTML = '';
     errorLoginContainer.classList.toggle('hidden');
 }
 
