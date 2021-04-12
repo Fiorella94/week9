@@ -46,6 +46,17 @@ button {
 #error-log-container li {
     list-style-type: none;
 }
+#error-log-cleaner {
+    margin-left: 15px;
+}
+#error-log-cleaner a {    
+    text-decoration: none;
+    font-weight: bold;
+}
+#error-log-cleaner a:hover {    
+    text-decoration: underline;
+    
+}
 /*CLASSES*/
 .hidden {
     display: none;
