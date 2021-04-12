@@ -10,14 +10,14 @@
     <body>
         <h1>Register</h1>
         <h3>Fill in this form to register.</h3>
-        <form>
+        <form id="main-form">
             <label for="full-name">Full Name</label>
-            <input type="text" name="full-name" placeholder="Full Name" id="form-register-name">
+            <input type="text" name="full-name" placeholder="Full Name" id="form-register-name">            
+            <div id="register-error-name" class="hidden">
+                <p>Name must be at least 6 characters long and have a space</p>
+            </div>
             <label for="email">Email Adress</label>
             <input type="text" name="email" placeholder="Email" id="form-register-email">
-            <div id="register-error-email" class="hidden">
-                <p>Name must have at least 6 characters and a space</p>
-            </div>
             <div id="register-error-email" class="hidden">
                 <p>E-mail must have a valid format</p>
             </div>
@@ -28,9 +28,8 @@
             </div>
             <label for="confirm-password">Confirm Password</label>
             <input type="password" name="confirm-password" placeholder="Confirm Password" id="form-register-second-password">
-            <input type="password" name="confirm-password" placeholder="Confirm Password" id="form-register-second-password">
             <div id="register-error-second-password" class="hidden">
-                <p>Must match first password</p>
+                <p>Passwords must have the correct format and match</p>
             </div>
             <button type="submit" name="submit" id="submit-button">Submit</button>
             <button type="reset" name="reset" id="reset-fields-button">Reset</button>
@@ -40,8 +39,14 @@
             <h2>Validation report: </h2>
             <ul id="list-of-errors">
             </ul>
+            <div id="error-log-cleaner">
+                <p>If you want to reset the validations log to perofm a new test click on finish</p>
+                <a  id="clean-form-link">
+                    <p>Finish</p>
+                </a>
+            </div>
         </div>
-        <div id="register-error-first-password" class="hidden">
+        <div id="message">
             <h3>Password must contain the following:</h3>
             <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
             <p id="number" class="invalid">A <b>number</b></p>

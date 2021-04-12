@@ -10,19 +10,31 @@
     <body id="login">
         <h1>Log In</h1>
         <h3>Fill in this form to login</h3>
-        <form>
+        <form id="main-form">
             <label for="email">Email Adress</label>
             <input type="text" name="email" placeholder="Email" id="form-login-email">
+            <div id="login-error-email" class="hidden">
+                <p>E-mail must have a valid format</p>
+            </div>
             <label for="password">Password</label>
             <input type="password" name="password" placeholder="Password" id="form-login-password">
+            <div id="login-error-password" class="hidden">
+                <p>Password must have the correct format</p>
+            </div> 
             <button type="submit" name="submit" id="login-button">Login</button>
-            <button type="reset" name="reset" id="reset">Reset</button>
+            <button type="reset" name="reset" id="reset-login-button">Reset</button>
             <p>Create an acount!<a href="register.html">Register Now!</a></p>
         </form>
         <div id="error-log-container" class="hidden">
             <h2>Validation report: </h2>
             <ul id="list-of-errors">
             </ul>
+            <div id="error-log-cleaner">
+                <p>If you want to reset the validations log to perofm a new test click on finish</p>
+                <a  id="clean-form-link">
+                    <p>Finish</p>
+                </a>
+            </div>
         </div>
     </body>
 </html>
