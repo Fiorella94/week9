@@ -9,14 +9,14 @@ var registerErrorName = document.getElementById('register-error-name');
 var registerErrorEmail = document.getElementById('register-error-email');
 var registerErrorFirstPassword = document.getElementById('register-error-first-password');
 var registerErrorSecondPassword = document.getElementById('register-error-second-password');
-
 /*fields and containers*/
 var errorLoginContainer = document.getElementById('error-log-container');
 var formRegisterSubmitButton = document.getElementById('submit-button');
 var formRegisterResetButton = document.getElementById('reset-fields-button');
 var listOfErrors = document.getElementById('list-of-errors');
 var listOfResults = document.getElementById('list-of-results');
-
+/*validator for http request*/
+var allValidationsComplete = false;
 /*convert some collections to arrays */
 var formCounter = Array.from(document.getElementsByTagName('form'));
 var labelsCounter = Array.from(document.getElementsByTagName('label'));
@@ -24,11 +24,9 @@ var inputsCounter = Array.from(document.getElementsByTagName('input'));
 var buttonsCounter = Array.from(document.getElementsByTagName('button'));
 /*cleaner*/
 var cleanFormLink = document.getElementById('clean-form-link');
-
-
-
 /*EVENT LISTENERS*/
 formRegisterSubmitButton.addEventListener('click', submitRegisterForm);
+formRegisterSubmitButton.addEventListener('click', httpGetRequest);
 formRegisterResetButton.addEventListener('click', resetRegisterForm);
 cleanFormLink.addEventListener('click', cleanFormFunction);
 /*name*/
@@ -43,18 +41,13 @@ formRegisterFirstPassword.addEventListener('blur', checkRegisterFirstPasswordErr
 /*second password*/
 formRegisterSecondPassword.addEventListener('focus', hideRegisterSecondPasswordError);
 formRegisterSecondPassword.addEventListener('blur', checkRegisterSecondPasswordError);
-
-
-
 /*FUNCTIONS*/
 function createMenuItem(error) {
     let newListItem = document.createElement('li');
     newListItem.textContent = error;
     return newListItem;
 }
-
-
-/*toggle function error hide and shown*/
+/*toggle functions to toggle  errors between hidden and shown*/
 /*name*/
 function hideRegisterNameError(e) {
     registerErrorName.className = 'hidden';
@@ -107,9 +100,8 @@ function checkRegisterSecondPasswordError(e) {
         registerErrorFirstPassword.className = 'hidden';
     }
 }
-
-function submitRegisterForm(e) {    
-    
+/*MAIN VALIDATION AND SUBMIT FUNCTION*/
+function submitRegisterForm(e) { 
     /*validates that there is not a previous list of error*/
     if (listOfErrors.innerHTML.trim() == "") {
         e.preventDefault();
@@ -126,19 +118,14 @@ function submitRegisterForm(e) {
         && formRegisterFirstPassword.value.length >= 8 
         && formRegisterSecondPassword.value.length !== 0 
         && formRegisterFirstPassword.value === formRegisterSecondPassword.value
-        ) {
+        ) { 
+            allValidationsComplete = true;   
             listOfErrors.appendChild(createMenuItem('Every validation has passed'));
             listOfResults.appendChild(createMenuItem('The Name is: '+formRegisterName.value));
             listOfResults.appendChild(createMenuItem('The e-mail is: '+formRegisterEmail.value));
             listOfResults.appendChild(createMenuItem('The first is: '+formRegisterFirstPassword.value));
             listOfResults.appendChild(createMenuItem('The second password is: '+formRegisterSecondPassword.value));
-            /*if all the validations pass, the function performs the request*/
-            fetch(
-                `https://jsonplaceholder.typicode.com/users?email=${formRegisterEmail.value}`, 
-                {method: 'get'}
-            )
-                .then(() => console.log('mail has been sent'))
-                .catch(() => console.log('Something went wrong')) 
+            
         } else {            
             if (formCounter.length === 0) {
                 listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
@@ -234,8 +221,7 @@ function submitRegisterForm(e) {
         e.preventDefault();
     }
 }
-
-
+/*RESET FORM FIELDS*/
 function resetRegisterForm(e) {
     mainForm.reset();
 }
@@ -247,83 +233,15 @@ function cleanFormFunction(e) {
 }
 /*HTTP request*/
 async function httpGetRequest() {
-    if (allValidationsComplete === true && listOfErrors.innerHTML.trim() == "") {
     if (allValidationsComplete === true) {
         // console.log('get triggers');
         try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${formLoginEmail.value}`, {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${formRegisterEmail.value}`, {
                 method: 'get',
             });
             console.log('HTTP request was successful', response);
-
         } catch (err) {
             console.error(`Error: ${err}`);
-
         }
     }
 }
-
-
-
-
-
-
-
-/*Comment for now*/
-// var myInput = document.getElementById("psw");
-// var letter = document.getElementById("letter");
-// var capital = document.getElementById("capital");
-// var number = document.getElementById("number");
-// var length = document.getElementById("length");
-
-// // When the user clicks on the password field, show the message box
-// myInput.onfocus = function() {
-//   document.getElementById("message").style.display = "block";
-// }
-
-// // When the user clicks outside of the password field, hide the message box
-// myInput.onblur = function() {
-//   document.getElementById("message").style.display = "none";
-// }
-
-// // When the user starts to type something inside the password field
-// myInput.onkeyup = function() {
-//   // Validate lowercase letters
-//   var lowerCaseLetters = /[a-z]/g;
-//   if(myInput.value.match(lowerCaseLetters)) {
-//     letter.classList.remove("invalid");
-//     letter.classList.add("valid");
-//   } else {
-//     letter.classList.remove("valid");
-//     letter.classList.add("invalid");
-// }
-
-//   // Validate capital letters
-//   var upperCaseLetters = /[A-Z]/g;
-//   if(myInput.value.match(upperCaseLetters)) {
-//     capital.classList.remove("invalid");
-//     capital.classList.add("valid");
-//   } else {
-//     capital.classList.remove("valid");
-//     capital.classList.add("invalid");
-//   }
-
-//   // Validate numbers
-//   var numbers = /[0-9]/g;
-//   if(myInput.value.match(numbers)) {
-//     number.classList.remove("invalid");
-//     number.classList.add("valid");
-//   } else {
-//     number.classList.remove("valid");
-//     number.classList.add("invalid");
-//   }
-
-//   // Validate length
-//   if(myInput.value.length >= 8) {
-//     length.classList.remove("invalid");
-//     length.classList.add("valid");
-//   } else {
-//     length.classList.remove("valid");
-//     length.classList.add("invalid");
-//   }
-// }
