@@ -26,7 +26,7 @@ var buttonsCounter = Array.from(document.getElementsByTagName('button'));
 var cleanFormLink = document.getElementById('clean-form-link');
 /*EVENT LISTENERS*/
 formRegisterSubmitButton.addEventListener('click', submitRegisterForm);
-formRegisterSubmitButton.addEventListener('click', httpGetRequest);
+formRegisterSubmitButton.addEventListener('click', handleRegister);
 formRegisterResetButton.addEventListener('click', resetRegisterForm);
 cleanFormLink.addEventListener('click', cleanFormFunction);
 /*name*/
@@ -232,16 +232,21 @@ function cleanFormFunction(e) {
     errorLoginContainer.classList.toggle('hidden');
 }
 /*HTTP request*/
-async function httpGetRequest() {
-    if (allValidationsComplete === true) {
-        // console.log('get triggers');
-        try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${formRegisterEmail.value}`, {
-                method: 'get',
-            });
-            console.log('HTTP request was successful', response);
-        } catch (err) {
-            console.error(`Error: ${err}`);
-        }
-    }
+function handleRegister() {
+    const data = {
+        email: formRegisterEmail .value,
+        name: formRegisterName.value,
+        password: formRegisterFirstPassword.value,
+    };
+    fetch('http://localhost:4000/register', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+    })
+        .then((response) => response.json())
+        .then((a) => console.log(a))
+        .catch((err) => console.log(err));
 }
