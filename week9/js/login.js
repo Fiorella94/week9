@@ -21,7 +21,7 @@ var allValidationsComplete = false;
 var cleanFormLink = document.getElementById('clean-form-link');
 /*Event listener*/
 formLoginButton.addEventListener('click', submitLoginForm);
-formLoginButton.addEventListener('click', httpGetRequest);
+formLoginButton.addEventListener('click', handleLogin);
 formLoginResetButton.addEventListener('click', resetLoginForm);
 cleanFormLink.addEventListener('click', cleanFormFunction);
 /*EL for email validation*/
@@ -155,19 +155,21 @@ function cleanFormFunction(e) {
 function resetLoginForm(e) {
     mainForm.reset();
 }
-/*HTTP request*/
-async function httpGetRequest() {
-    if (allValidationsComplete === true) {
+/*Handle*/
+async function handleLogin(){
+    const data = {
+        email: formLoginEmail.value,
+        password: formLoginPassword.value
         
-        try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${formLoginEmail.value}`, {
-                method: 'get',
-            });
-            console.log('HTTP request was successful', response);
-            
-        } catch (err) {
-            console.error(`Error: ${err}`);
-            
-        }
     }
+    fetch('http://localhost:4000/login',{
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+            'Accept': 'application/json',
+            'content-Type': 'application/json'
+        }
+    }).then(response => response.json())
+    .then (a => console.log (a))
+    .catch(err => console.log(err))
 }
